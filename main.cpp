@@ -19,9 +19,11 @@ int main() {
     //int type = (int) rand_float(0,3);
     //int radius = rand_float(0,100);
 
-    std::vector<std::unique_ptr<Curves>> first_container;
+    //std::vector<std::unique_ptr<Curves>> first_container;
+    std::vector<std::shared_ptr<Curves>> first_container;
     
-    first_container.push_back(std::make_unique<Circles>(circle, 1));
+    
+    //first_container.push_back(std::make_unique<Circles>(circle, 1));
 
     /*for (float k = 0 ; k < (2*M_PI); k=k+M_PI/15) {
         //printf("Point          :\t");
@@ -46,13 +48,14 @@ int main() {
         int type = (int) rand_float(0,3); // random curve with random 
         switch (type){
         case circle:
-            first_container.push_back(std::make_unique<Circles>(circle, rand_float(0, 10)));
+            //first_container.push_back(std::make_unique<Circles>(circle, rand_float(0, 10)));
+            first_container.push_back(std::make_shared<Circles>(circle, rand_float(0, 10)));
             break;
         case ellipse:
-            first_container.push_back(std::make_unique<Ellipses>(ellipse, rand_float(0, 10), rand_float(0, 10)));
+            first_container.push_back(std::make_shared<Ellipses>(ellipse, rand_float(0, 10), rand_float(0, 10)));
             break;
         case helixe:
-            first_container.push_back(std::make_unique<Helixes>(helixe, rand_float(0, 10), rand_float(0, 10)));
+            first_container.push_back(std::make_shared<Helixes>(helixe, rand_float(0, 10), rand_float(0, 10)));
             break;
         }
     }
@@ -64,6 +67,38 @@ int main() {
         printf("DerivativePoints:\t");
         first_container[i]->getDerivativePoints(M_PI/4).display();
     }
+
+
+    std::vector<std::shared_ptr<Curves>> second_container;
+    for(int i=0; i < (int) first_container.size(); i++) {
+        if ( 0 == first_container[i]->getType() ) {
+            second_container.push_back(first_container[i]);
+        }
+    }
+
+    printf("\nsecond_container:\n");
+
+    for(int i=0; i < (int) second_container.size(); i++) {
+        printf("\nNumber_of_curve: %d Type: %d\n", i, second_container[i]->getType());
+        printf("Point           :\t");
+        second_container[i]->getPoints(M_PI/4).display();
+        printf("DerivativePoints:\t");
+        second_container[i]->getDerivativePoints(M_PI/4).display();
+    }
+
+    printf("\nfirst_container:\n");
+
+    for(int i=0; i < (int) first_container.size(); i++) {
+        printf("\nNumber_of_curve: %d Type: %d\n", i, first_container[i]->getType());
+        printf("Point           :\t");
+        first_container[i]->getPoints(M_PI/4).display();
+        printf("DerivativePoints:\t");
+        first_container[i]->getDerivativePoints(M_PI/4).display();
+    }
+
+
+    //change something through second_container
+    // check second_container and first_container
 
     /*for (float i = 0 ; i < (2*M_PI); i=i+M_PI/4) {
         std::cout << "i:" << i << " cos:" << cos(i) << std::endl;
