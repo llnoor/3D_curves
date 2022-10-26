@@ -14,17 +14,18 @@ second container shares (i.e. not clones) circles of the first one, e.g. via poi
 5. Sort the second container in the ascending order of circles’ radii. That is, the first element has the
 smallest radius, the last - the greatest.
 6. Compute the total sum of radii of all curves in the second container.
-(*) Additional optional requirements:
+
+### (*) Additional optional requirements:
 7. Split implementation into a library of curves (.dll or .so) and executable which uses API of this
 library.
 8. Implement computation of the total sum of radii using parallel computations (e.g. OpenMP or Intel
 TBB library).
 
 
-Requirements to the implementation:
-The implementation must use virtual methods.
-Has neither explicit memory deallocation nor memory leaks.
-Curves must be physically correct (e.g. radii must be positive).
-Containers and sorting must be implemented using STL (C++ Standard Template Library).
-The implementation may use constructs of C++11 or higher.
-The code must compile with any compiler of your choice (gcc, Visual C++, etc).
+### Requirements to the implementation:
+- The implementation must use virtual methods.
+- Has neither explicit memory deallocation nor memory leaks.
+- Curves must be physically correct (e.g. radii must be positive).
+- Containers and sorting must be implemented using STL (C++ Standard Template Library).
+- The implementation may use constructs of C++11 or higher.
+- The code must compile with any compiler of your choice (gcc, Visual C++, etc).
