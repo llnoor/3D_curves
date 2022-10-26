@@ -8,13 +8,19 @@ class Point {
 public:
     Point(float in_x, float in_y, float in_z): point_x(in_x), point_y(in_y), point_z(in_z) {}
     void display();
+    /*float getPointX();
+    float getPointY();
+    float getPointZ();*/
 };
 
 class Curves
 {
 public:
     Curves(int in_type): type(in_type) {}
-    virtual Point getPoints(float) = 0; 
+    virtual Point getPoints(float) = 0;
+    int getType() {
+        return type;
+    }
 protected:
     int type;
 };

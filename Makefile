@@ -3,10 +3,13 @@ CFLAGS=-Wall -Wextra -Werror
 
 .PHONY: all clean rebuild
 
-all: main
+all: first
 
 clean:
 	rm -rf *.o *.a *.so *.out
+
+first: clean main 
+	./main.out
 
 main: main.o curves.o
 	$(CC) main.o curves.o -o main.out
