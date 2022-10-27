@@ -1,33 +1,20 @@
-#include <iostream>
-#include <memory>
-#include <vector>
-#include <algorithm>
-#include <numeric>
-#include <math.h>
 
-#include "curves.h"
 
-enum enum_curves {
-    circle,
-    ellipse,
-    helixe
-};
-
-float rand_float(float, float);
-
-/*bool sortByRadii( const std::shared_ptr<Curves>& curve1, const std::shared_ptr<Curves>& curve2) {
-    return curve1->getRadii() < curve2->getRadii();
-}*/
- 
+//#include "curves.h"
+#include "tasks_curves.h"
 
 int main() {
-    srand(time(NULL));
+    Tasks all_tasks;
+    all_tasks.task1();
+    all_tasks.task2();
+    all_tasks.task3();
+    all_tasks.task4();
+    all_tasks.task5();
+    all_tasks.task6();
+
     
-    //int type = (int) rand_float(0,3);
-    //int radius = rand_float(0,100);
-
+    /*srand(time(NULL));
     std::vector<std::shared_ptr<Curves>> first_container;
-
     int number_curves = 10;
     
     for (int i = 0; i < number_curves; i++) {
@@ -63,7 +50,7 @@ int main() {
     printf("\nsecond_container:\n");
 
     for(int i=0; i < (int) second_container.size(); i++) {
-        printf("\nNumber_of_curve: %d Type: %d\n", i, second_container[i]->getType());
+        printf("\nNumber_of_curve: %d Type: %d Radius: %.6f\n", i, second_container[i]->getType(), second_container[i]->getRadii() );
         printf("Point           :\t");
         second_container[i]->getPoints(M_PI/4).display();
         printf("DerivativePoints:\t");
@@ -75,32 +62,19 @@ int main() {
     printf("\nsorted second_container:\n");
 
     for(int i=0; i < (int) second_container.size(); i++) {
-        printf("\nNumber_of_curve: %d Type: %d\n", i, second_container[i]->getType());
+        printf("\nNumber_of_curve: %d Type: %d Radius: %.6f\n", i, second_container[i]->getType(), second_container[i]->getRadii() );
         printf("Point           :\t");
         second_container[i]->getPoints(M_PI/4).display();
         printf("DerivativePoints:\t");
         second_container[i]->getDerivativePoints(M_PI/4).display();
     }
 
-    //sum_of_elems = std::accumulate(vector.begin(), vector.end(), decltype(vector)::value_type(0));
-    //float sum_of_radii = std::accumulate(second_container.begin(), second_container.end(), 0);
+    float sum_of_radii = 0;
+    std::for_each(second_container.begin(), second_container.end(), [&](std::shared_ptr<Curves>& temp_curve){
+        sum_of_radii += temp_curve->getRadii();
+    });
 
-    //float sum_of_radii = std::accumulate(second_container.begin(), second_container.end(), second_container );
-
-
-    //std::cout << "sum_of_radii:" << sum_of_radii << std::endl;
-
-    /*for (float i = 0 ; i < (2*M_PI); i=i+M_PI/4) {
-        std::cout << "i:" << i << " cos:" << cos(i) << std::endl;
-    }*/
-
+    std::cout << "sum_of_radii:" << sum_of_radii << std::endl;*/
 
     return 0;
-}
-
-float rand_float(float min, float max) {
-    float random = ((float) rand()) / (float) RAND_MAX;
-    float diff = max - min;
-    float r = random * diff;
-    return min + r;
 }

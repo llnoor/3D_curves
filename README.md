@@ -52,3 +52,8 @@ It means than we have leniar dependanse of z from t. We do not have any.
 
 So z=step*t/2PI
 dz/dt = step/2PI?
+
+
+4. Populate a second container that would contain only circles from the first container. Make sure the second container shares (i.e. not clones) circles of the first one, e.g. via pointers.
+How can we check it?
+We can do something with second container. This opertion should effect to data. And we can see it throght first container.

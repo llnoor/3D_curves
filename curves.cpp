@@ -4,13 +4,7 @@
 #include <math.h>
 #include "curves.h"
 
-#define EPSILON 0.000006
-
 void Point::display(){
-    /*if ( point_x < EPSILON) point_x = 0;
-    if ( point_y < EPSILON) point_y = 0;
-    if ( point_z < EPSILON) point_z = 0;*/
-    //std::cout << point_x << "\t\t\t" << point_y << "\t\t\t" << point_z << std::endl;
     printf("\t%.6f\t%.6f\t%.6f\n",point_x,point_y,point_z);
 }
 
@@ -24,6 +18,10 @@ std::vector<Point> Curves::getDerivativeVector() {
 
 bool Curves::sortByRadii( const std::shared_ptr<Curves>& curve1, const std::shared_ptr<Curves>& curve2) {
     return curve1->getRadii() < curve2->getRadii();
+}
+
+int Curves::getType() {
+    return type;
 }
 
 Point Circles::getPoints(float t) {
