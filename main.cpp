@@ -1,6 +1,8 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <algorithm>
+#include <numeric>
 #include <math.h>
 
 #include "curves.h"
@@ -13,42 +15,25 @@ enum enum_curves {
 
 float rand_float(float, float);
 
+/*bool sortByRadii( const std::shared_ptr<Curves>& curve1, const std::shared_ptr<Curves>& curve2) {
+    return curve1->getRadii() < curve2->getRadii();
+}*/
+ 
+
 int main() {
     srand(time(NULL));
     
     //int type = (int) rand_float(0,3);
     //int radius = rand_float(0,100);
 
-    //std::vector<std::unique_ptr<Curves>> first_container;
     std::vector<std::shared_ptr<Curves>> first_container;
-    
-    
-    //first_container.push_back(std::make_unique<Circles>(circle, 1));
 
-    /*for (float k = 0 ; k < (2*M_PI); k=k+M_PI/15) {
-        //printf("Point          :\t");
-        //first_container[0]->getPoints(k).display();
-        printf("t: %.2f\t: ", k);
-        first_container[0]->getDerivativePoints(k).display();
-    }
-
-    printf("\nvector:\n");
-
-    std::vector<Point> temp_vector2;
-    temp_vector2 = first_container[0]->getDerivativeVector();
-    for(int i=0; i < (int) temp_vector2.size(); i++) {
-        printf("i: %d\t: ", i);
-        temp_vector2.at(i).display();
-    }*/
-
-
-    int number_curves = 20;
+    int number_curves = 10;
     
     for (int i = 0; i < number_curves; i++) {
-        int type = (int) rand_float(0,3); // random curve with random 
+        int type = (int) rand_float(0,3);
         switch (type){
         case circle:
-            //first_container.push_back(std::make_unique<Circles>(circle, rand_float(0, 10)));
             first_container.push_back(std::make_shared<Circles>(circle, rand_float(0, 10)));
             break;
         case ellipse:
@@ -68,7 +53,6 @@ int main() {
         first_container[i]->getDerivativePoints(M_PI/4).display();
     }
 
-
     std::vector<std::shared_ptr<Curves>> second_container;
     for(int i=0; i < (int) first_container.size(); i++) {
         if ( 0 == first_container[i]->getType() ) {
@@ -86,19 +70,25 @@ int main() {
         second_container[i]->getDerivativePoints(M_PI/4).display();
     }
 
-    printf("\nfirst_container:\n");
+    std::sort(second_container.begin(), second_container.end(), Curves::sortByRadii );
 
-    for(int i=0; i < (int) first_container.size(); i++) {
-        printf("\nNumber_of_curve: %d Type: %d\n", i, first_container[i]->getType());
+    printf("\nsorted second_container:\n");
+
+    for(int i=0; i < (int) second_container.size(); i++) {
+        printf("\nNumber_of_curve: %d Type: %d\n", i, second_container[i]->getType());
         printf("Point           :\t");
-        first_container[i]->getPoints(M_PI/4).display();
+        second_container[i]->getPoints(M_PI/4).display();
         printf("DerivativePoints:\t");
-        first_container[i]->getDerivativePoints(M_PI/4).display();
+        second_container[i]->getDerivativePoints(M_PI/4).display();
     }
 
+    //sum_of_elems = std::accumulate(vector.begin(), vector.end(), decltype(vector)::value_type(0));
+    //float sum_of_radii = std::accumulate(second_container.begin(), second_container.end(), 0);
 
-    //change something through second_container
-    // check second_container and first_container
+    //float sum_of_radii = std::accumulate(second_container.begin(), second_container.end(), second_container );
+
+
+    //std::cout << "sum_of_radii:" << sum_of_radii << std::endl;
 
     /*for (float i = 0 ; i < (2*M_PI); i=i+M_PI/4) {
         std::cout << "i:" << i << " cos:" << cos(i) << std::endl;

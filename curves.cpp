@@ -22,6 +22,10 @@ std::vector<Point> Curves::getDerivativeVector() {
     return temp_vector;
 }
 
+bool Curves::sortByRadii( const std::shared_ptr<Curves>& curve1, const std::shared_ptr<Curves>& curve2) {
+    return curve1->getRadii() < curve2->getRadii();
+}
+
 Point Circles::getPoints(float t) {
     float x = radius*cos(t);
     float y = radius*sin(t);
@@ -34,6 +38,14 @@ Point Circles::getDerivativePoints(float t) {
     float y = radius*cos(t);
     float z = 0.0;
     return Point(x,y,z);
+}
+
+void Circles::change_data() {
+    radius = radius * 10;
+}
+
+float Circles::getRadii() {
+    return radius;
 }
 
 Point Ellipses::getPoints(float t) {
@@ -50,6 +62,15 @@ Point Ellipses::getDerivativePoints(float t) {
     return Point(x,y,z);
 }
 
+void Ellipses::change_data() {
+    radius_X = radius_X * 10;
+    radius_Y = radius_Y * 10;
+}
+
+float Ellipses::getRadii() {
+    return radius_X*radius_Y;  // like area of ellipses / M_PI
+}
+
 Point Helixes::getPoints(float t){
     float x = radius*cos(t);
     float y = radius*sin(t);
@@ -64,3 +85,11 @@ Point Helixes::getDerivativePoints(float t) {
     return Point(x,y,z);
 }
 
+void Helixes::change_data() {
+    radius = radius * 10;
+    step = step * 10;
+}
+
+float Helixes::getRadii() {
+    return radius;
+}

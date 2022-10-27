@@ -21,10 +21,18 @@ public:
     Curves(int in_type): type(in_type) {}
     virtual Point getPoints(float) = 0;
     virtual Point getDerivativePoints(float) = 0;
+    virtual void change_data() = 0;
     std::vector<Point> getDerivativeVector();
     int getType() {
         return type;
     }
+
+    static bool sortByRadii( const std::shared_ptr<Curves>&, const std::shared_ptr<Curves>&);
+
+    //bool operator()( const std::shared_ptr<Curves>& curve1, const std::shared_ptr<Curves>& curve2) const ;
+    virtual float getRadii() = 0;
+    operator int() { return this->getRadii(); }
+    //operator + {return Curves(this->seconds + c2.seconds);} 
 protected:
     int type;
 };
@@ -36,6 +44,8 @@ public:
     :Curves(in_type), radius(in_radius) {}
     Point getPoints(float t) override;
     Point getDerivativePoints(float t) override;
+    void change_data() override;
+    float getRadii() override;
 private:
     float radius;
 };
@@ -47,6 +57,8 @@ public:
     :Curves(in_type), radius_X(in_radius_X), radius_Y(in_radius_Y) {}
     Point getPoints(float t) override;
     Point getDerivativePoints(float t) override;
+    void change_data() override;
+    float getRadii() override;
 private:
     float radius_X;
     float radius_Y;
@@ -59,6 +71,8 @@ public:
     :Curves(in_type), radius(in_radius), step(in_step) {}
     Point getPoints(float t) override;
     Point getDerivativePoints(float t) override;
+    void change_data() override;
+    float getRadii() override;
 private:
     float radius;
     float step;
