@@ -1,11 +1,38 @@
 # 3D_curves
 
+## Programming Part: ##
+We have three general classes:
+1. Curves (to work with 3D geometric curves)
+2. Points (to display 3D points)
+3. Task (to check Curves class)
+
+And subclasses:
+1. Circles
+2. Ellipses
+3. Helixes
+
+To work 
+
+In main.cpp we have only Task class methods.
 
 leaks were checked by 
-<code> valgrind --leak-check=full ./main.out </code>
+<code> valgrind --leak-check=full --undef-value-errors=no ./main.out </code>
 
-test programm test_curves.cpp was used to check functions of the programm
-<code> functions: getPoints of circles and e.g. </code>
+
+
+## Mathematic part: ##
+We have #3D point#: x, y, z;
+For me #Derivative 3D vector# means vector of 3D points. It means that we should return vector of Points: dx/dt, dy/dt, dz/dt. 
+
+We have general Class Curves with:
+
+
+
+
+
+
+
+
 
 
 first derivatives:
@@ -15,9 +42,7 @@ first derivative of radius = 0, because r = const
 first derivative of t (it is like angle) = 
 
 
-So we have 3D point: x, y, z;
-For me 3D vector means vector of 3D points. It means that we should return vector of Points:
-dx/dt, dy/dt, dz/dt. 
+
 
 For Circles we have:
 x = R cos(t) here t is angle form 0 to 2 PI 
