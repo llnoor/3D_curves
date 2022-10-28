@@ -34,4 +34,4 @@ curves.so: curves.h curves.cpp
 
 build_with_dynamic: main.o tasks_curves.o curves.so
 	$(CC) main.o tasks_curves.o curves.so -ldl -o ../build/main.out -L. -Wl,-rpath,.
-
+	

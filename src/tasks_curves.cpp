@@ -8,6 +8,7 @@
 #define NUMBER_CURVES 10
 
 void Tasks::task1() {
+    srand(time(NULL));
     std::cout << "Task1:" << std::endl;
     first_container.push_back(std::make_shared<Circles>(circle, rand_float(0, 10)));
     first_container.push_back(std::make_shared<Ellipses>(ellipse, rand_float(0, 10), rand_float(0, 10)));
